@@ -1,0 +1,14 @@
+version: '3'
+services:
+  backend_dev:
+    build:
+      context: ./be
+      dockerfile: ./Dockerfile
+    image: backend
+    container_name: backend
+    ports:
+      - ${BE_DEV_HTTP_PORT}:3000
+    environment:
+      HTTP_PORT: ${BE_DEV_HTTP_PORT}
+    volumes:
+      - ./be/src:/usr/app/src
