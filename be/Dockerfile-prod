@@ -7,7 +7,6 @@ EXPOSE 3000
 
 WORKDIR /usr/app
 COPY package.json /usr/app/
-COPY package-lock.json /usr/app/
 COPY tsconfig.json /usr/app/
 RUN npm i
 
