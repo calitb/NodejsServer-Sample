@@ -4,13 +4,13 @@
   "author": "Carlos Thurber <thurber.carlos@gmail.com>",
   "scripts": {
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/app.ts",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
     "prod": "tsc && node ./dist/app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.17.1",
-    "ts-node-dev": "^1.0.0-pre.30",
+    "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.1.1"
   },
   "devDependencies": {
