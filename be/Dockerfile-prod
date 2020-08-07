@@ -2,7 +2,7 @@ FROM node:10.12.0-alpine
 
 LABEL maintainer="Carlos Thurber B."
 
-ENV NODE_ENV develop
+ENV NODE_ENV production
 EXPOSE 3000
 
 WORKDIR /usr/app
