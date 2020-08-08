@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 services:
   server:
     image: calitb/server_prod
@@ -15,19 +15,19 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
       - mysql
+    restart: always
   mysql:
     image: calitb/mysql_prod
     build:
       context: ./db
     container_name: db_prod
     command: --default-authentication-plugin=mysql_native_password
-    ports:
-      - 3307:3306
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
   adminer:
     image: adminer
     container_name: adminer_prod
@@ -37,3 +37,4 @@ services:
       ADMINER_DESIGN: price
     depends_on:
       - mysql
+    restart: always
