@@ -1,6 +1,6 @@
 # NodeJS Server
 
-### Build and start the project
+### Build and start the servers
 
 ```
 # Develop
@@ -30,4 +30,13 @@ docker exec -it server_prod /bin/ash
 docker exec -it db_dev mysql -ucalitb -p
 # MySQL Production (password 12345)
 docker exec -it db_prod mysql -ucalitb -p
+```
+
+### Stop the servers
+
+```
+# Develop
+docker-compose -p node_dev down
+# Production
+docker-compose -f docker-compose-prod.yml -p node_prod down
 ```
