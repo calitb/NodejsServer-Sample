@@ -1,6 +1,6 @@
 # NodeJS Server
 
-### Build and start the servers
+## Build and start the servers
 
 ```
 # Develop
@@ -9,7 +9,7 @@ docker-compose -p node_dev up -d
 docker-compose -f docker-compose-prod.yml -p node_prod up -d
 ```
 
-### Test the server
+## Test the server
 
 Open the following links:
 
@@ -19,7 +19,20 @@ Production: [http://localhost:80/query](http://localhost:80/query) / DB: [http:/
 
 In Adminer use `server=mysql`, `user=calitb`, `pass=12345`
 
-### Enter container CLI
+## Install new dependencies in development
+
+See the example on how to add `moment` to the project and get the updated package.json files from the container:
+
+```
+cd be
+rm package.json package-lock.json
+docker exec -it server_dev npm i moment
+docker exec -it server_dev cat package.json > package.json
+docker exec -it server_dev cat package-lock.json > package-lock.json
+docker restart server_dev
+```
+
+## Enter container CLI
 
 ```
 # Server Develop
@@ -32,7 +45,7 @@ docker exec -it db_dev mysql -ucalitb -p
 docker exec -it db_prod mysql -ucalitb -p
 ```
 
-### Stop the servers
+## Stop the servers
 
 ```
 # Develop
