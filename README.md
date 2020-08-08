@@ -4,9 +4,9 @@
 
 ```
 # Develop
-docker-compose up --build
+docker-compose -p node_dev up -d
 # Production
-docker-compose -f docker-compose-prod.yml up --build
+docker-compose -f docker-compose-prod.yml -p node_prod up -d
 ```
 
 ### Test the server
