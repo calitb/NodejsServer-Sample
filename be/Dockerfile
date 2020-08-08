@@ -1,13 +1,8 @@
-FROM node:10.12.0-alpine
-
+FROM node:13.1-alpine
 LABEL maintainer="Carlos Thurber B."
-
 ENV NODE_ENV develop
-EXPOSE 3000
-
 WORKDIR /usr/app
-COPY package.json /usr/app/
-COPY tsconfig.json /usr/app/
+EXPOSE 3000
+COPY . ./
 RUN npm i
-
-CMD npm run dev
+CMD ["npm", "run", "dev"]

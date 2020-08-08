@@ -1,14 +1,43 @@
 version: '3'
 services:
-  backend_prod:
+  server_prod:
+    image: calitb/server_prod
     build:
       context: ./be
       dockerfile: ./Dockerfile-prod
-    image: backend_prod
-    container_name: backend_prod
+    container_name: server_prod
     ports:
-      - ${BE_PROD_HTTP_PORT}:3000
+      - 80:3000
     environment:
-      HTTP_PORT: ${BE_PROD_HTTP_PORT}
-    volumes:
-      - ./be/src:/usr/app/src
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mysql_prod
+    links:
+      - mysql_prod:mysql
+  mysql_prod:
+    image: calitb/mysql_prod
+    build:
+      context: ./db
+    container_name: db_prod
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - ${MYSQL_PORT_PROD}:3306
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  adminer_prod:
+    image: adminer
+    container_name: adminer_prod
+    ports:
+      - 8081:8080
+    environment:
+      ADMINER_DESIGN: price
+    depends_on:
+      - mysql_prod
+    links:
+      - mysql_prod:mysql

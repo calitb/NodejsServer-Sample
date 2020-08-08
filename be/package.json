@@ -4,17 +4,15 @@
   "author": "Carlos Thurber <thurber.carlos@gmail.com>",
   "scripts": {
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
-    "prod": "tsc && node ./dist/app.js"
+    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts"
   },
   "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/mysql": "^2.15.15",
     "body-parser": "^1.18.2",
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.1.1"
-  },
-  "devDependencies": {
-    "@types/express": "^4.16.0"
-  },
-  "main": "dist/app.js"
+  }
 }

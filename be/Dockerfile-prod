@@ -1,13 +1,14 @@
-FROM node:10.12.0-alpine
-
-LABEL maintainer="Carlos Thurber B."
-
+FROM node:13.1-alpine as build
 ENV NODE_ENV production
-EXPOSE 3000
-
 WORKDIR /usr/app
-COPY package.json /usr/app/
-COPY tsconfig.json /usr/app/
+COPY . ./
 RUN npm i
+RUN npm run tsc 
 
-CMD npm run prod
+FROM node:13.1-alpine
+LABEL maintainer="Carlos Thurber B."
+EXPOSE 3000
+WORKDIR /usr/app
+COPY --from=build /usr/app/dist ./dist
+COPY --from=build /usr/app/node_modules ./node_modules
+CMD ["node", "./dist/app.js"]

@@ -1,7 +1,5 @@
 # NodeJS Server
 
-First, create an `.env` file and copy the contents of `.env.sample`.
-
 ### Build and start the project
 
 ```
@@ -15,15 +13,21 @@ docker-compose -f docker-compose-prod.yml up --build
 
 Open the following links:
 
-[Development](http://localhost:3031)
+[Development](http://localhost:3000/query) / [DB Development](http://localhost:8080)
 
-[Production](http://localhost:3032)
+[Production](http://localhost:80/query) / [DB Production](http://localhost:8081)
+
+In Adminer use `server=mysql`, `user=calitb`, `pass=12345`
 
 ### Enter container CLI
 
 ```
-# Develop
-docker exec -it backend /bin/ash
-# Production
-docker exec -it backend_prod /bin/ash
+# Server Develop
+docker exec -it server_dev /bin/ash
+# Server Production
+docker exec -it server_prod /bin/ash
+# MySQL Develop (password 12345)
+docker exec -it db_dev mysql -ucalitb -p
+# MySQL Production (password 12345)
+docker exec -it db_prod mysql -ucalitb -p
 ```
