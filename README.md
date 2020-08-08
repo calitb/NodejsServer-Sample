@@ -6,7 +6,7 @@
 # Develop
 docker-compose -p node_dev up -d
 # Production
-docker-compose -f docker-compose-prod.yml -p node_prod up -d
+docker-compose -f docker-compose-prod.yml -p node_prod up -d --build
 ```
 
 ## Test the server
@@ -30,6 +30,7 @@ docker exec -it server_dev npm i moment
 docker exec -it server_dev cat package.json > package.json
 docker exec -it server_dev cat package-lock.json > package-lock.json
 docker restart server_dev
+docker-compose -p node_dev up -d --build
 ```
 
 ## Enter container CLI
