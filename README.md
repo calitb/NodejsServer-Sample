@@ -13,9 +13,9 @@ docker-compose -f docker-compose-prod.yml -p node_prod up -d
 
 Open the following links:
 
-[Development](http://localhost:3000/query) / [DB Development](http://localhost:8080)
+Development: [http://localhost:3000/query](http://localhost:3000/query) / DB: [http://localhost:8080](http://localhost:8080)
 
-[Production](http://localhost:80/query) / [DB Production](http://localhost:8081)
+Production: [http://localhost:80/query](http://localhost:80/query) / DB: [http://localhost:8081](http://localhost:8081)
 
 In Adminer use `server=mysql`, `user=calitb`, `pass=12345`
 
