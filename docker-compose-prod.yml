@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server_prod:
+  server:
     image: calitb/server_prod
     build:
       context: ./be
@@ -14,10 +14,8 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
-      - mysql_prod
-    links:
-      - mysql_prod:mysql
-  mysql_prod:
+      - mysql
+  mysql:
     image: calitb/mysql_prod
     build:
       context: ./db
@@ -30,7 +28,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-  adminer_prod:
+  adminer:
     image: adminer
     container_name: adminer_prod
     ports:
@@ -38,6 +36,4 @@ services:
     environment:
       ADMINER_DESIGN: price
     depends_on:
-      - mysql_prod
-    links:
-      - mysql_prod:mysql
+      - mysql

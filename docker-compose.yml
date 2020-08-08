@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server_dev:
+  server:
     image: calitb/server_dev
     build:
       context: ./be
@@ -15,10 +15,8 @@ services:
     volumes:
       - ./be/src:/usr/app/src
     depends_on:
-      - mysql_dev
-    links:
-      - mysql_dev:mysql
-  mysql_dev:
+      - mysql
+  mysql:
     image: calitb/mysql_dev
     build:
       context: ./db
@@ -31,7 +29,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-  adminer_dev:
+  adminer:
     image: adminer
     container_name: adminer_dev
     ports:
@@ -39,6 +37,4 @@ services:
     environment:
       ADMINER_DESIGN: price
     depends_on:
-      - mysql_dev
-    links:
-      - mysql_dev:mysql
+      - mysql
