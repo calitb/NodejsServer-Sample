@@ -20,7 +20,7 @@ app.get('/query', function (req, res) {
     sqlConnection.query('SELECT id, name from user', (error, results, fields) => {
       sqlConnection.end();
       if (error) {
-        res.status(503).send(JSON.stringify({ status: 'error', msg: "Couldn't get results from the DB" }));
+        res.status(503).send(JSON.stringify({ status: 'error', msg: "Couldn't get results from the DB, " + error }));
       } else {
         res.send(JSON.stringify({ status: 'success', data: results }));
       }
